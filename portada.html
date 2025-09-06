@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portada</title>
+  <link rel="stylesheet" href="Css/styles-css.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🐾 Sistema de Adopción de Mascotas</h1>
+      <p class="welcome-message">¡Bienvenido! Conectamos corazones con patitas.</p>
+
+      <nav>
+        <div class="nav-menu">
+          <button class="nav-btn" onclick="navigateToPage('agregar.html')">📝 Agregar aviso</button>
+          <button class="nav-btn" onclick="navigateToPage('listado.html')">📋 Listado</button>
+          <button class="nav-btn" onclick="navigateToPage('estadisticas.html')">📊 Estadísticas</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="recent-adoptions">
+      <h2 class="section-title">🕒 Últimas 5 adopciones publicadas</h2>
+
+      <table class="adoptions-table">
+        <thead>
+          <tr>
+            <th>Fecha publicación</th>
+            <th>Comuna</th>
+            <th>Sector</th>
+            <th>Cantidad</th>
+            <th>Tipo · edad</th>
+            <th>Foto</th>
+          </tr>
+        </thead>
+        <tbody id="recent-adoptions-body"></tbody>
+      </table>
+
+      <div style="text-align:center; margin-top:12px;">
+        <button class="nav-btn" onclick="navigateToPage('listado.html')">Ver todos los avisos</button>
+      </div>
+    </main>
+
+    <div class="footer">
+      <p>CC5002 – Prototipo HTML (Tarea 1), Joaquín García, Seccion 1</p>
+    </div>
+  </div>
+
+  <script src="Js/script-js.js"></script>
+</body>
+</html>

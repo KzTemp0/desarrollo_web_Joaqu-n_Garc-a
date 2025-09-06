@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de aviso</title>
+  <link rel="stylesheet" href="Css/styles-css.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔎 Detalle de aviso</h1>
+      <p class="welcome-message">Información completa del aviso seleccionado.</p>
+
+      <nav>
+        <div class="nav-menu">
+          <button class="nav-btn" onclick="navigateToPage('portada.html')">🏠 Portada</button>
+          <button class="nav-btn" onclick="navigateToPage('listado.html')">⬅️ Volver al listado</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="recent-adoptions">
+      <h2 class="section-title">Santiago — Beauchef 850, terraza</h2>
+
+      <div style="margin-bottom:16px;">
+        <table class="adoptions-table">
+          <thead>
+            <tr>
+              <th>Fecha publicación</th>
+              <th>Fecha entrega</th>
+              <th>Comuna</th>
+              <th>Sector</th>
+              <th>Cantidad · tipo · edad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-08-18 12:00</td>
+              <td>2025-08-21 12:00</td>
+              <td>Santiago</td>
+              <td>Beauchef 850, terraza</td>
+              <td><strong>1</strong> gato · 2 meses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-bottom:16px;">
+        <h3 class="section-title" style="font-size:1.2em;">Contacto</h3>
+        <table class="adoptions-table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Celular</th>
+              <th>Red social</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Camila Navarrete</td>
+              <td>cami@example.com</td>
+              <td>+569.12345678</td>
+              <td>instagram: @adopta_camila</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <h3 class="section-title" style="font-size:1.2em;">Fotos (clic para ampliar)</h3>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <img src="Imagenes/gato1.jfif" alt="Gato 1" width="320" height="240"
+               style="cursor:pointer; border:2px solid #66b3ff; border-radius:6px;"
+               onclick="abrirFoto('Imagenes/gato1.jfif')">
+
+          <img src="Imagenes/gato2.webp" alt="Gato 2" width="320" height="240"
+               style="cursor:pointer; border:2px solid #66b3ff; border-radius:6px;"
+               onclick="abrirFoto('Imagenes/gato2.webp')">
+
+          <img src="Imagenes/gato3.jpeg" alt="Gato 3" width="320" height="240"
+               style="cursor:pointer; border:2px solid #66b3ff; border-radius:6px;"
+               onclick="abrirFoto('Imagenes/gato3.jpeg')">
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="Js/script-js.js"></script>
+  <script src="Js/detalle-js.js"></script>
+</body>
+</html>

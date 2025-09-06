@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Estadísticas</title>
+  <link rel="stylesheet" href="Css/styles-css.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📈 Estadísticas</h1>
+      <p class="welcome-message">Resumen visual (datos inventados, versión compacta).</p>
+
+      <nav>
+        <div class="nav-menu">
+          <button class="nav-btn" onclick="navigateToPage('portada.html')">🏠 Portada</button>
+          <button class="nav-btn" onclick="navigateToPage('agregar.html')">📝 Agregar aviso</button>
+          <button class="nav-btn" onclick="navigateToPage('listado.html')">📋 Listado</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="recent-adoptions">
+      <h2 class="section-title">Gráficos</h2>
+
+      <section style="margin-bottom:16px;">
+        <h3 class="section-title" style="font-size:1.1em;">Avisos por día (últimos 7 días)</h3>
+        <figure style="text-align:center;">
+
+          <svg viewBox="0 0 480 240" role="img" aria-labelledby="t-linea d-linea">
+            <title id="t-linea">Gráfico de líneas: avisos por día</title>
+            <desc id="d-linea">Eje X: días; Eje Y: cantidad (0 a 6). Valores: 1,4,2,5,3,4,1.</desc>
+
+            <rect x="0" y="0" width="480" height="240" fill="#ffffff"/>
+            <g transform="translate(50,20)">
+            
+              <line x1="0" y1="180" x2="380" y2="180" stroke="#e5e7eb"/>
+              <line x1="0" y1="0"   x2="0"   y2="180" stroke="#e5e7eb"/>
+              <g stroke="#f1f5f9">
+                <line x1="0" y1="150" x2="380" y2="150"/>
+                <line x1="0" y1="120" x2="380" y2="120"/>
+                <line x1="0" y1="90"  x2="380" y2="90"/>
+                <line x1="0" y1="60"  x2="380" y2="60"/>
+                <line x1="0" y1="30"  x2="380" y2="30"/>
+              </g>
+              
+              <g fill="#6b7280" font-size="11" text-anchor="end">
+                <text x="-8" y="180">0</text>
+                <text x="-8" y="150">1</text>
+                <text x="-8" y="120">2</text>
+                <text x="-8" y="90">3</text>
+                <text x="-8" y="60">4</text>
+                <text x="-8" y="30">5</text>
+              </g>
+
+              
+              <polyline fill="none" stroke="#0ea5e9" stroke-width="2"
+                points="
+                  0,150   63,60   126,120   189,30   252,90   315,60   380,150
+                "/>
+
+              <g fill="#0ea5e9">
+                <circle r="3.5" cx="0"   cy="150"/>
+                <circle r="3.5" cx="63"  cy="60"/>
+                <circle r="3.5" cx="126" cy="120"/>
+                <circle r="3.5" cx="189" cy="30"/>
+                <circle r="3.5" cx="252" cy="90"/>
+                <circle r="3.5" cx="315" cy="60"/>
+                <circle r="3.5" cx="380" cy="150"/>
+              </g>
+
+              <g fill="#6b7280" font-size="11" text-anchor="middle">
+                <text x="0"   y="200">Lu</text>
+                <text x="63"  y="200">Ma</text>
+                <text x="126" y="200">Mi</text>
+                <text x="189" y="200">Ju</text>
+                <text x="252" y="200">Vi</text>
+                <text x="315" y="200">Sá</text>
+                <text x="380" y="200">Do</text>
+              </g>
+            </g>
+          </svg>
+          <figcaption style="margin-top:6px;">Eje X: días · Eje Y: cantidad de avisos</figcaption>
+        </figure>
+      </section>
+
+      <section style="margin-bottom:16px;">
+        <h3 class="section-title" style="font-size:1.1em;">Total por tipo (torta)</h3>
+        <figure style="text-align:center;">
+          
+          <svg viewBox="0 0 480 240" role="img" aria-labelledby="t-torta d-torta">
+            <title id="t-torta">Gráfico de torta: total por tipo</title>
+            <desc id="d-torta">Perros 55% (verde) y Gatos 45% (violeta), datos ficticios.</desc>
+
+            <rect x="0" y="0" width="480" height="240" fill="#ffffff"/>
+            <g transform="translate(240,120)">
+              
+              <circle r="70" fill="#8b5cf6"/>
+              
+              <path d="
+                M 0 0
+                L 0 -70
+                A 70 70 0 1 1 -21.63 66.57
+                Z" fill="#16a34a"/>
+              
+              <g transform="translate(110,-30)" font-size="13">
+                <rect x="0" y="0" width="14" height="14" fill="#16a34a"/>
+                <text x="20" y="12" fill="#1f2937">Perros — 55%</text>
+                <rect x="0" y="24" width="14" height="14" fill="#8b5cf6"/>
+                <text x="20" y="36" fill="#1f2937">Gatos — 45%</text>
+              </g>
+            </g>
+          </svg>
+          <figcaption style="margin-top:6px;">Proporción de avisos por tipo</figcaption>
+        </figure>
+      </section>
+
+      <section style="margin-bottom:16px;">
+        <h3 class="section-title" style="font-size:1.1em;">Avisos por mes (Gatos vs Perros)</h3>
+        <figure style="text-align:center;">
+          
+          <svg viewBox="0 0 480 240" role="img" aria-labelledby="t-barras d-barras">
+            <title id="t-barras">Gráfico de barras agrupadas</title>
+            <desc id="d-barras">Eje X: Ene–Jun; Eje Y: 0–8; barras para Gatos (violeta) y Perros (verde).</desc>
+
+            <rect x="0" y="0" width="480" height="240" fill="#ffffff"/>
+            <g transform="translate(50,20)">
+              
+              <line x1="0" y1="180" x2="380" y2="180" stroke="#e5e7eb"/>
+              <line x1="0" y1="0"   x2="0"   y2="180" stroke="#e5e7eb"/>
+              <g stroke="#f1f5f9">
+                <line x1="0" y1="156" x2="380" y2="156"/>
+                <line x1="0" y1="132" x2="380" y2="132"/>
+                <line x1="0" y1="108" x2="380" y2="108"/>
+                <line x1="0" y1="84"  x2="380" y2="84"/>
+                <line x1="0" y1="60"  x2="380" y2="60"/>
+                <line x1="0" y1="36"  x2="380" y2="36"/>
+                <line x1="0" y1="12"  x2="380" y2="12"/>
+              </g>
+              <g fill="#6b7280" font-size="11" text-anchor="end">
+                <text x="-8" y="180">0</text>
+                <text x="-8" y="156">1</text>
+                <text x="-8" y="132">2</text>
+                <text x="-8" y="108">3</text>
+                <text x="-8" y="84">4</text>
+                <text x="-8" y="60">5</text>
+                <text x="-8" y="36">6</text>
+                <text x="-8" y="12">7</text>
+              </g>
+
+              
+              <rect x="0"  y="132" width="22" height="48" fill="#8b5cf6"><title>Ene — Gatos: 2</title></rect>
+              <rect x="26" y="108" width="22" height="72" fill="#16a34a"><title>Ene — Perros: 3</title></rect>
+              
+              <rect x="76" y="60"  width="22" height="120" fill="#8b5cf6"><title>Feb — Gatos: 5</title></rect>
+              <rect x="102" y="84" width="22" height="96"  fill="#16a34a"><title>Feb — Perros: 4</title></rect>
+              
+              <rect x="152" y="108" width="22" height="72"  fill="#8b5cf6"><title>Mar — Gatos: 3</title></rect>
+              <rect x="178" y="12"  width="22" height="168" fill="#16a34a"><title>Mar — Perros: 7</title></rect>
+              
+              <rect x="228" y="84"  width="22" height="96"  fill="#8b5cf6"><title>Abr — Gatos: 4</title></rect>
+              <rect x="254" y="108" width="22" height="72"  fill="#16a34a"><title>Abr — Perros: 3</title></rect>
+              
+              <rect x="304" y="108"  width="22" height="72" fill="#8b5cf6"><title>May — Gatos: 3</title></rect>
+              <rect x="330" y="108" width="22" height="72" fill="#16a34a"><title>May — Perros: 3</title></rect>
+              
+              <rect x="380" y="132" width="22" height="48"  fill="#8b5cf6"><title>Jun — Gatos: 2</title></rect>
+              <rect x="406" y="36"  width="22" height="144" fill="#16a34a"><title>Jun — Perros: 6</title></rect>
+
+              <g fill="#6b7280" font-size="11" text-anchor="middle">
+                <text x="11"  y="200">Ene</text>
+                <text x="87"  y="200">Feb</text>
+                <text x="163" y="200">Mar</text>
+                <text x="239" y="200">Abr</text>
+                <text x="315" y="200">May</text>
+                <text x="391" y="200">Jun</text>
+              </g>
+
+              <g transform="translate(300,10)" font-size="12">
+                <rect x="0" y="0" width="14" height="14" fill="#16a34a"/>
+                <text x="20" y="12" fill="#1f2937">Perros</text>
+                <rect x="0" y="24" width="14" height="14" fill="#8b5cf6"/>
+                <text x="20" y="36" fill="#1f2937">Gatos</text>
+              </g>
+            </g>
+          </svg>
+          <figcaption style="margin-top:6px;">Eje X: meses · Eje Y: cantidad (Gatos/Perros)</figcaption>
+        </figure>
+      </section>
+
+      <div style="text-align:center; margin-top:10px;">
+        <button class="nav-btn" onclick="navigateToPage('portada.html')">🏠 Volver a la portada</button>
+      </div>
+    </main>
+
+  </div>
+
+  <script src="Js/script-js.js"></script>
+</body>
+</html>

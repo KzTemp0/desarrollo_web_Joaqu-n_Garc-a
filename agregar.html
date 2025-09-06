@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar aviso de adopción</title>
+  <link rel="stylesheet" href="Css/styles-css.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>📝 Agregar aviso de adopción</h1>
+      <p class="welcome-message">Completa el formulario y valida antes de enviar.</p>
+
+      <nav>
+        <div class="nav-menu">
+          <button class="nav-btn" onclick="navigateToPage('portada.html')">🏠 Portada</button>
+          <button class="nav-btn" onclick="navigateToPage('listado.html')">📋 Listado</button>
+          <button class="nav-btn" onclick="navigateToPage('estadisticas.html')">📊 Estadísticas</button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="recent-adoptions">
+      <h2 class="section-title">Formulario de publicación</h2>
+
+      <form id="form-aviso" novalidate>
+        <fieldset style="margin-bottom:16px;">
+          <legend><strong>¿Dónde?</strong></legend>
+
+          <label for="region">Región</label><br>
+          <select id="region" name="region">
+            <option value="">Seleccione...</option>
+            <option value="rm">Región Metropolitana</option>
+            <option value="v">Valparaíso</option>
+            <option value="viii">Biobío</option>
+          </select>
+          <br><br>
+
+          <label for="comuna">Comuna</label><br>
+          <select id="comuna" name="comuna" disabled>
+            <option value="">Seleccione región primero...</option>
+          </select>
+          <br><br>
+
+          <label for="sector">Sector (máx. 100)</label><br>
+          <input type="text" id="sector" name="sector" maxlength="100">
+        </fieldset>
+
+        <fieldset style="margin-bottom:16px;">
+          <legend><strong>¿Contacto de esta publicación?</strong></legend>
+
+          <label for="nombre">Nombre (3–200)</label><br>
+          <input type="text" id="nombre" name="nombre">
+          <br><br>
+
+          <label for="email">Email (formato válido, máx. 100)</label><br>
+          <input type="email" id="email" name="email">
+          <br><br>
+
+          <label for="cel">Número de celular (+NNN.NNNNNNNN)</label><br>
+          <input type="tel" id="cel" name="cel" placeholder="+569.12345678">
+          <br><br>
+
+          <label for="contactar-por">Contactar por (máx. 5)</label><br>
+          <select id="contactar-por" name="contactar-por" multiple size="6">
+            <option value="whatsapp">whatsapp</option>
+            <option value="telegram">telegram</option>
+            <option value="x">X</option>
+            <option value="instagram">instagram</option>
+            <option value="tiktok">tiktok</option>
+            <option value="otra">otra</option>
+          </select>
+          <br><br>
+
+          <div id="contacto-extra" style="display:none;">
+            <label for="contacto-id">ID o URL (4–50)</label><br>
+            <input type="text" id="contacto-id" name="contacto-id">
+          </div>
+        </fieldset>
+
+        <fieldset style="margin-bottom:16px;">
+          <legend><strong>¿Qué mascota ofrece en adopción?</strong></legend>
+
+          <label for="tipo">Tipo</label><br>
+          <select id="tipo" name="tipo">
+            <option value="">Seleccione...</option>
+            <option value="gato">gato</option>
+            <option value="perro">perro</option>
+          </select>
+          <br><br>
+
+          <label for="cantidad">Cantidad (entero ≥ 1)</label><br>
+          <input type="number" id="cantidad" name="cantidad">
+          <br><br>
+
+          <label for="edad">Edad (entero ≥ 1)</label><br>
+          <input type="number" id="edad" name="edad">
+          <br><br>
+
+          <label for="unidad">Unidad medida edad</label><br>
+          <select id="unidad" name="unidad">
+            <option value="">Seleccione...</option>
+            <option value="meses">meses</option>
+            <option value="años">años</option>
+          </select>
+          <br><br>
+
+          <label for="fecha-entrega">Fecha disponible para entrega</label><br>
+          <input type="datetime-local" id="fecha-entrega" name="fecha-entrega">
+          <small id="hint-fecha" style="display:block; color:#444; margin-top:4px;"></small>
+          <br><br>
+
+          <label for="descripcion">Descripción (opcional)</label><br>
+          <textarea id="descripcion" name="descripcion" cols="50" rows="10"></textarea>
+          <br><br>
+
+          <div>
+            <label>Fotos (min 1, máx 5)</label><br>
+            <div id="fotos-wrapper">
+              <input type="file" name="foto" accept="image/*">
+            </div>
+            <br>
+            <button type="button" class="nav-btn" id="btn-otra-foto">Agregar otra foto</button>
+          </div>
+        </fieldset>
+
+        <div style="margin-top:16px;">
+          <button type="submit" class="nav-btn">Agregar este aviso de adopción</button>
+          <button type="button" class="nav-btn" onclick="navigateToPage('portada.html')">Cancelar y volver</button>
+        </div>
+
+        <div id="errores" style="margin-top:12px; color:#b00020;"></div>
+      </form>
+
+      <!-- Bloque de éxito -->
+      <section id="exito" style="display:none; margin-top:16px;" aria-live="polite">
+        <h3 class="section-title" style="font-size:1.2em;">
+          ✅ Hemos recibido la información de adopción, ¡muchas gracias y suerte!
+        </h3>
+        <p style="margin:8px 0 16px;">Puedes volver a la portada del sistema con el siguiente botón.</p>
+        <button type="button" class="nav-btn" onclick="navigateToPage('portada.html')">🏠 Volver a la portada</button>
+      </section>
+    </main>
+
+    <div class="footer">
+      <p>Gracias por ayudar a darles un hogar.</p>
+    </div>
+  </div>
+
+  <script src="Js/script-js.js"></script>
+  <script src="Js/agregar-js.js"></script>
+</body>
+</html>
