@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Inicio{% endblock %}
+{% block content %}
+<section class="card">
+  <h2 class="section-title">Últimos 5 avisos</h2>
+  <table class="tabla" id="tabla-portada">
+    <thead>
+      <tr>
+        <th>Fecha publicación</th>
+        <th>Comuna</th>
+        <th>Sector</th>
+        <th>Cantidad</th>
+        <th>Tipo edad</th>
+        <th>Foto</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="actions">
+    <a class="btn-primary" href="{{ url_for('web.listado') }}">Ver listado completo</a>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='Js/script-t2-portada.js') }}"></script>
+{% endblock %}
