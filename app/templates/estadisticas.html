@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Estadísticas{% endblock %}
+{% block content %}
+<section class="card">
+  <h2 class="section-title">Avisos por día</h2>
+  <div id="chart-por-dia" style="width:100%;height:360px"></div>
+</section>
+<section class="card">
+  <h2 class="section-title">Avisos por tipo</h2>
+  <div id="chart-por-tipo" style="width:100%;height:360px"></div>
+</section>
+<section class="card">
+  <h2 class="section-title">Avisos por mes</h2>
+  <div id="chart-por-mes" style="width:100%;height:360px"></div>
+</section>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{{ url_for('static', filename='Js/script-t2-estadisticas.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}App Adopción{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='Css/styles-css.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">Adopciones</h1>
+    <nav class="nav-menu">
+      <a class="nav-btn" href="{{ url_for('web.portada') }}">Inicio</a>
+      <a class="nav-btn" href="{{ url_for('web.listado') }}">Listado</a>
+      <a class="nav-btn" href="{{ url_for('web.agregar') }}">Agregar</a>
+      <a class="nav-btn" href="{{ url_for('web.estadisticas') }}">Estadísticas</a>
+    </nav>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <p>© 2025 Adopciones</p>
+  </footer>
+</body>
+</html>

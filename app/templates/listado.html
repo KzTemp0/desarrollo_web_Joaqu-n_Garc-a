@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Listado{% endblock %}
+{% block content %}
+<section class="card">
+  <h2 class="section-title">Filtros</h2>
+  <form id="filtros" class="filters">
+    <div class="form-group">
+      <label for="region">Región</label>
+      <select id="region" name="region_id"></select>
+    </div>
+    <div class="form-group">
+      <label for="comuna">Comuna</label>
+      <select id="comuna" name="comuna_id"></select>
+    </div>
+    <div class="form-group">
+      <label for="tipo">Tipo</label>
+      <select id="tipo" name="tipo">
+        <option value="">Todos</option>
+        <option value="perro">Perro</option>
+        <option value="gato">Gato</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="orden">Orden</label>
+      <select id="orden" name="orden">
+        <option value="desc">Más recientes</option>
+        <option value="asc">Más antiguos</option>
+      </select>
+    </div>
+    <button id="btn-filtrar" type="submit" class="btn-primary">Aplicar</button>
+  </form>
+</section>
+<section class="card">
+  <h2 class="section-title">Resultados</h2>
+  <table class="tabla" id="tabla-listado">
+    <thead>
+      <tr>
+        <th>Fecha publicación</th>
+        <th>Fecha entrega</th>
+        <th>Comuna</th>
+        <th>Sector</th>
+        <th>Cantidad</th>
+        <th>Tipo edad</th>
+        <th>Nombre contacto</th>
+        <th>Total fotos</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <div class="pager">
+    <button type="button" id="prev" class="btn-secondary">Anterior</button>
+    <span class="pager-info" id="info"></span>
+    <button type="button" id="next" class="btn-secondary">Siguiente</button>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='Js/script-t2-listado.js') }}"></script>
+{% endblock %}

@@ -148,3 +148,40 @@ nav {
     color: #004080;
     font-size: 0.9em;
 }
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #f0f8ff; /* celeste muy claro */
+}
+
+.tabla thead th {
+  background: #cce7ff; /* azul celeste claro */
+  border: 1px solid #a3cfff;
+  padding: 10px;
+  text-align: left;
+  color: #0a1a33;
+}
+
+.tabla tbody td {
+  border: 1px solid #a3cfff;
+  padding: 10px;
+  color: #0a1a33;
+  background-color: #ffffff; /* filas blancas por defecto */
+}
+
+.tabla tbody tr:nth-child(even) td {
+  background-color: #e8f3ff; /* alterna con celeste claro */
+}
+
+.tabla tbody tr:hover {
+  background: #d1ecff; /* hover celeste un poco más fuerte */
+  cursor: pointer;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
