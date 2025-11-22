@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Detalle{% endblock %}
+{% block content %}
+<section class="card">
+  <h2 class="section-title">Detalle del aviso</h2>
+  <div class="detalle-grid">
+    <div class="detalle-foto">
+      <img id="detalle-foto" alt="Foto" src="">
+    </div>
+    <div class="detalle-info">
+      <h3 id="detalle-nombre"></h3>
+      <p><strong>Tipo:</strong> <span id="detalle-tipo"></span></p>
+      <p><strong>Edad:</strong> <span id="detalle-edad"></span></p>
+      <p><strong>Cantidad:</strong> <span id="detalle-cantidad"></span></p>
+      <p><strong>Región:</strong> <span id="detalle-region"></span></p>
+      <p><strong>Comuna:</strong> <span id="detalle-comuna"></span></p>
+      <p><strong>Sector:</strong> <span id="detalle-sector"></span></p>
+      <p><strong>Email:</strong> <span id="detalle-email"></span></p>
+      <p><strong>Celular:</strong> <span id="detalle-celular"></span></p>
+      <p><strong>Descripción:</strong> <span id="detalle-descripcion"></span></p>
+    </div>
+  </div>
+  <div id="galeria"></div>
+  <div id="modal" style="display:none"><img id="modal-img" width="800" height="600"><button id="cerrar">cerrar</button></div>
+
+  <h3 style="margin-top:16px">Comentarios</h3>
+  <form id="form-comentario">
+    <div>
+      <label>Nombre</label>
+      <input id="c-nombre" maxlength="80">
+    </div>
+    <div>
+      <label>Comentario</label>
+      <textarea id="c-texto" rows="4" cols="50" maxlength="300"></textarea>
+    </div>
+    <button type="submit">Agregar comentario</button>
+    <small id="ok-msg" style="display:none">Comentario agregado</small>
+  </form>
+  <ul id="lista-comentarios" style="margin-top:16px"></ul>
+</section>
+<script src="{{ url_for('static', filename='Js/script-t2-detalle.js') }}"></script>
+{% endblock %}
