@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Administrador de fotos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<div class="page-container">
+    <div th:replace="fragments/nav :: nav"></div>
+
+    <h1>Administrador de fotos</h1>
+
+    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+    <div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+    <div class="galeria-fotos">
+        <div class="foto-card" th:each="foto : ${fotos}">
+            <div class="foto-imagen">
+                <!-- Ajusta la URL de la imagen según cómo la sirvas en tu aplicación -->
+                <img th:src="@{'/fotos/' + ${foto.id}}" alt="Foto aviso" />
+            </div>
+
+            <div class="foto-detalle">
+                <p>
+                    <strong>Fecha aviso:</strong>
+                    <span th:text="${foto.aviso.fechaPublicacion}"></span>
+                </p>
+                <p>
+                    <strong>Comuna:</strong>
+                    <span th:text="${foto.aviso.comuna.nombre}"></span>
+                </p>
+                <p>
+                    <strong>Email contacto:</strong>
+                    <span th:text="${foto.aviso.email}"></span>
+                </p>
+            </div>
+
+            <div class="foto-acciones">
+                <form th:action="@{'/t5-admin-fotos/' + ${foto.id} + '/eliminar'}" method="post"
+                      onsubmit="return pedirMotivo(this);">
+                    <input type="hidden" name="motivo" />
+                    <button type="submit">Marcar como eliminada</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function pedirMotivo(form) {
+        var motivo = prompt("Indique el motivo de eliminación (5 a 200 caracteres):");
+        if (motivo === null) {
+            return false;
+        }
+        motivo = motivo.trim();
+        if (motivo.length < 5 || motivo.length > 200) {
+            alert("El motivo debe tener entre 5 y 200 caracteres.");
+            return false;
+        }
+        form.motivo.value = motivo;
+        return true;
+    }
+</script>
+
+</body>
+</html>

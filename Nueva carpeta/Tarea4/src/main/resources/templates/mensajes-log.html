@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mensajes de log</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+
+<div class="page-container">
+    <div th:replace="fragments/nav :: nav"></div>
+
+    <h1>Mensajes de log</h1>
+
+    <table class="tabla">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Mensaje</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="log : ${mensajes}">
+            <td th:text="${log.id}"></td>
+            <td th:text="${log.fecha}"></td>
+            <td th:text="${log.mensaje}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

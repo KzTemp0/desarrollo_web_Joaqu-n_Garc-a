@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}Agregar aviso{% endblock %}
+{% block content %}
+<section class="card">
+  <h2 class="section-title">Agregar aviso de adopción</h2>
+
+  <form id="form-agregar" enctype="multipart/form-data" autocomplete="off">
+    <fieldset>
+      <legend>¿Dónde?</legend>
+      <label for="region">Región</label>
+      <select id="region" name="region_id"></select>
+
+      <label for="comuna">Comuna</label>
+      <select id="comuna" name="comuna_id" required></select>
+
+      <label for="sector">Sector</label>
+      <input id="sector" name="sector" maxlength="100">
+    </fieldset>
+
+    <fieldset>
+      <legend>Contacto</legend>
+      <label for="nombre">Nombre</label>
+      <input id="nombre" name="nombre" maxlength="200">
+
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" maxlength="100" placeholder="nombre@dominio.com">
+
+      <label for="celular">Celular</label>
+      <input id="celular" name="celular" type="tel" placeholder="+569.12345678">
+    </fieldset>
+
+    <fieldset>
+      <legend>Formas de contacto (opcional)</legend>
+      <div id="contactos">
+        <div>
+          <label for="cp_nombre_1">Contactar por</label>
+          <select id="cp_nombre_1" name="cp_nombre">
+            <option value="">Selecciona</option>
+            <option value="whatsapp">whatsapp</option>
+            <option value="telegram">telegram</option>
+            <option value="X">X</option>
+            <option value="instagram">instagram</option>
+            <option value="tiktok">tiktok</option>
+            <option value="otra">otra</option>
+          </select>
+          <input id="cp_identificador_1" name="cp_identificador" placeholder="ID o URL">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Mascota</legend>
+      <label for="tipo">Tipo</label>
+      <select id="tipo" name="tipo">
+        <option value="">Selecciona</option>
+        <option value="gato">gato</option>
+        <option value="perro">perro</option>
+      </select>
+
+      <label for="cantidad">Cantidad</label>
+      <input id="cantidad" name="cantidad" type="number" min="1" step="1">
+
+      <label for="edad">Edad</label>
+      <input id="edad" name="edad" type="number" min="1" step="1">
+
+      <label for="unidad_edad">Unidad</label>
+      <select id="unidad_edad" name="unidad_edad">
+        <option value="">Selecciona</option>
+        <option value="m">meses</option>
+        <option value="a">años</option>
+      </select>
+
+      <label for="fecha_entrega">Fecha disponible</label>
+      <input id="fecha_entrega" name="fecha_entrega" type="datetime-local">
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" name="descripcion" cols="50" rows="10" maxlength="1000"></textarea>
+
+      <div>
+        <label>Foto(s)</label>
+        <div id="fotos-wrapper">
+          <input type="file" name="fotos" accept="image/*">
+        </div>
+        <button type="button" id="agregar-foto">agregar otra foto</button>
+      </div>
+    </fieldset>
+
+    <button type="button" id="btn-enviar">Agregar este aviso de adopción</button>
+  </form>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  const $form=document.getElementById("form-agregar");
+  const $region=document.getElementById("region");
+  const $comuna=document.getElementById("comuna");
+  const $fecha=document.getElementById("fecha_entrega");
+  const $fotosWrapper=document.getElementById("fotos-wrapper");
+  const $btnFoto=document.getElementById("agregar-foto");
+  const $btnEnviar=document.getElementById("btn-enviar");
+  const $email=document.getElementById("email");
+  const $unidad=document.getElementById("unidad_edad");
+
+  function setMinFecha(){
+    const d=new Date(Date.now()+3*60*60*1000);
+    const v=d.toISOString().slice(0,16);
+    $fecha.value=v;
+    $fecha.min=v;
+  }
+
+  async function cargarRegiones(){
+    try{
+      const r=await fetch("/api/regiones");
+      const regiones=await r.json();
+      $region.innerHTML=`<option value="" disabled selected>Selecciona</option>`+
+        regiones.map(x=>`<option value="${x.id}">${x.nombre}</option>`).join("");
+    }catch(e){$region.innerHTML=`<option value="">Error</option>`}
+  }
+
+  async function cargarComunas(regionId){
+    if(!regionId){$comuna.innerHTML=`<option value="" disabled selected>Selecciona</option>`;return;}
+    try{
+      const r=await fetch(`/api/comunas?region_id=${encodeURIComponent(regionId)}`);
+      const comunas=await r.json();
+      $comuna.innerHTML=`<option value="" disabled selected>Selecciona</option>`+
+        comunas.map(x=>`<option value="${x.id}">${x.nombre}</option>`).join("");
+    }catch(e){$comuna.innerHTML=`<option value="">Error</option>`}
+  }
+
+  function nuevaFoto(){
+    const input=document.createElement("input");
+    input.type="file";
+    input.name="fotos";
+    input.accept="image/*";
+    return input;
+  }
+
+  if($btnFoto){
+    $btnFoto.addEventListener("click",()=>{
+      const actuales=[...$fotosWrapper.querySelectorAll('input[type="file"]')].length;
+      if(actuales>=5) return;
+      $fotosWrapper.appendChild(nuevaFoto());
+    });
+  }
+
+  if($region){
+    $region.addEventListener("change",e=>cargarComunas(e.target.value));
+  }
+
+  if($btnEnviar){
+    $btnEnviar.addEventListener("click",async ()=>{
+      const email=($email.value||"").trim();
+      if(!email || !email.includes("@") || !email.includes(".") || email.length>100){
+        alert("Ingresa un email válido (ej: nombre@dominio.com, máx 100).");
+        return;
+      }
+      if(!$unidad.value){
+        alert("Selecciona la unidad de edad (meses o años).");
+        return;
+      }
+      const fotos=[...$fotosWrapper.querySelectorAll('input[type="file"]')];
+      if(fotos.length<1){
+        alert("Debes adjuntar al menos una foto.");
+        return;
+      }
+      try{
+        const fd=new FormData($form);
+        const resp=await fetch("/api/avisos",{method:"POST",body:fd});
+        const texto=await resp.text();
+        if(!resp.ok){
+          alert("Error al enviar: "+texto);
+          return;
+        }
+        alert("Hemos recibido la información de adopción, muchas gracias y suerte!");
+        location.href="/";
+      }catch(err){
+        alert("No se pudo enviar. Revisa la conexión o la consola.");
+      }
+    });
+  }
+
+  setMinFecha();
+  cargarRegiones();
+});
+</script>
+
+{% endblock %}
